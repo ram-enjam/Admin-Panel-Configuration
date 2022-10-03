@@ -1,0 +1,19 @@
+.alert {
+	position: absolute;
+    top: 10px;
+    right: 10px;
+    transition: 0.5s all;
+    z-index: 999;
+}
+
+.alert i {
+	padding-right: 10px;
+}
+
+.alert .close {
+	margin-left: 15px;
+	position: relative;
+	top: 1px;
+	font-weight: bolder;
+	transition: 0.5s all;
+}
