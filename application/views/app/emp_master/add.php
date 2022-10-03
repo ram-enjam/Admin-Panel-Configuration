@@ -96,28 +96,7 @@ require_once(APPPATH . 'views/admin/include/navbar.php');
                             </div>
                           </div>
                         </div>
-                        <div class="col-lg-4 col-md-6 p-0">
-                          <div class="form-group row mx-auto" style="position: relative;top: 7px;">
-                            <label class="col-md-4 label-control">Department</label>
-                            <div class="col-md-8">
-                              <label id="projectinput8" class="file center-block">
-
-                                <select class="form-control" id="projectinput5" required="required" name="department">
-                                  <option value="">--Select Department--</option>
-                                  <?php
-                                  $i = 0;
-                                  foreach ($department as $department) {
-                                    $i++;
-                                  ?>
-                                    <option value="<?php echo $department->department_id ?>"><?php echo $department->department_name; ?></option>
-                                  <?php } ?>
-
-                                </select>
-
-                              </label>
-                            </div>
-                          </div>
-                        </div>
+                       
                       </div>
                     </div>
 
@@ -148,7 +127,6 @@ require_once(APPPATH . 'views/admin/include/navbar.php');
                       <th>Slno</th>
                       <th>Employee Name</th>
                       <th>Phone</th>
-                      <th>Department</th>
                       <th>Created Date</th>
                       <th style="width: 60px;">Action</th>
                       <th>Status</th>
@@ -164,7 +142,6 @@ require_once(APPPATH . 'views/admin/include/navbar.php');
                         <td><?php echo $i; ?></td>
                         <td><?php echo $emp->emp_name; ?></td>
                         <td><?php echo $emp->phone; ?></td>
-                        <td><?php echo $emp->department_name; ?></td>
                         <td><?php echo $emp->createdDate; ?></td>
                         <td class="text-center">
                           <a href="<?php echo base_url(); ?>app/emp_master/edit/<?php echo $emp->emp_id; ?>"><i style="font-size:20px;padding: 0 5px;" class="ft-edit info"></i></a>

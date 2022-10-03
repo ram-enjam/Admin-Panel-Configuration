@@ -26,7 +26,6 @@ class Emp_master_model extends CI_Model{
 		
 			'emp_name'			=>	$emp_name,
 			'phone'				=>	$this->input->post('emp_phone'),
-		    'department_id'		=>	$this->input->post('department'),
 		    'createdDate' 		=>	$date
 			
 		);
@@ -44,7 +43,7 @@ class Emp_master_model extends CI_Model{
 
 	public function getEmp(){
 	
-	$select = "SELECT A.*,B.department_name from employee as A LEFT JOIN department as B ON A.department_id=B.department_id";
+	$select = "SELECT A.* from employee as A";
 	$query= $this->db->query($select)->result();
 	return $query;
    }
@@ -60,8 +59,8 @@ class Emp_master_model extends CI_Model{
    	$emp_name= $this->input->post('emp_name');
    	$phone = $this->input->post('phone');
    	$emp_id = $this->input->post('emp_id');
-   	$department_id = $this->input->post('department');
-   	$update = "UPDATE employee SET emp_name='".$emp_name."', department_id='".$department_id."', phone='".$phone."', modiby='".$date."' WHERE emp_id='".$emp_id."'";
+   
+   	$update = "UPDATE employee SET emp_name='".$emp_name."', phone='".$phone."', modiby='".$date."' WHERE emp_id='".$emp_id."'";
    	$query = $this->db->query($update);
    }
 

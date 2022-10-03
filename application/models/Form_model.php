@@ -224,4 +224,104 @@ class Form_model extends CI_Model
 		$this->db->query($sql);
 		echo $status;
 	}
+
+	//Add Products
+	public function get_products()
+	{
+		$select = "SELECT * FROM add_products WHERE is_delete = '0' ORDER BY id DESC";
+		$query = $this->db->query($select)->result();
+		return $query;
+	}
+
+	public function save_products()
+	{
+		$createdBy = $this->session->userdata('login');
+		$createdBy = $createdBy['user_id'];
+		date_default_timezone_set("Asia/Kolkata");
+		$date       =     date('Y-m-d H:i:s');
+		$product_type = $this->input->post('product_type');
+		$chemical_name = $this->input->post('chemi_name');
+		$chemi_num = $this->input->post('chemi_num');
+		$event_description = $this->input->post('event_description');
+		$data = array(
+			'product_type' => $product_type,
+			'chemical_name' => $chemical_name,
+			'chemical_number' => $chemi_num,
+			'created_on' => $date,
+			'created_by' => $createdBy
+		);
+		$query = $this->db->insert('add_products', $data);
+		return $query;
+	}
+	public function edit_get_product($id)
+	{
+		$select = "SELECT * FROM add_products where id='" . $id . "'";
+		$query = $this->db->query($select)->row();
+		return $query;
+	}
+
+	public function save_edit_product()
+	{	
+		$updated = $this->session->userdata('login');
+		$updatedBy = $updated['user_id'];
+		date_default_timezone_set("Asia/Kolkata");
+		$date       =     date('Y-m-d H:i:s');
+		$product_type = $this->input->post('product_type');
+		$chemical_name = $this->input->post('chemi_name');
+		$chemi_number = $this->input->post('chemi_num');
+		$id =   $this->input->post('id');
+		$data = array(
+			'product_type' => $product_type,
+			'chemical_name' => $chemical_name,
+			'chemical_number' => $chemi_number,
+			'updated_on' => $date,
+			'updated_by' => $updatedBy
+		);
+		$query = $this->db->update('add_products', $data, array('id' => $id));
+		return $query;
+	}
+	public function product_active($id)
+	{
+		$updated = $this->session->userdata('login');
+		$updatedBy = $updated['user_id'];
+		date_default_timezone_set("Asia/Kolkata");
+		$date       =     date('Y-m-d H:i:s');
+		$data = array(
+			'inactive' => '1',
+			'updated_on' => $date,
+			'updated_by' => $updatedBy
+		);
+		$query = $this->db->update('add_products', $data, array('id' => $id));
+		return $query;
+
+	}
+	public function product_deactive($id)
+	{
+		$updated = $this->session->userdata('login');
+		$updatedBy = $updated['user_id'];
+		date_default_timezone_set("Asia/Kolkata");
+		$date       =     date('Y-m-d H:i:s');
+		$data = array(
+			'inactive' => '0',
+			'updated_on' => $date,
+			'updated_by' => $updatedBy
+		);
+		$query = $this->db->update('add_products', $data, array('id' => $id));
+		return $query;
+	}
+
+	public function delete_product($id)
+	{
+		$updated = $this->session->userdata('login');
+		$updatedBy = $updated['user_id'];
+		date_default_timezone_set("Asia/Kolkata");
+		$date       =     date('Y-m-d H:i:s');
+		$data = array(
+			'is_delete' => '1',
+			'updated_on' => $date,
+			'updated_by' => $updatedBy
+		);
+		$query = $this->db->update('add_products', $data, array('id' => $id));
+		return $query;
+	}
 }

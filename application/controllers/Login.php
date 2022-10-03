@@ -69,8 +69,6 @@ class Login extends General
 			$login = array(
 				'username'     =>   $this->input->post('username'),
 				'user'         =>   $user_info->emp_name,
-				'department'   =>   $user_info->department_name,
-				'department_id'   =>   $user_info->department_id,
 				'user_role'    =>   $user_info->user_role,
 				'is_logged_in' =>   true,
 				'user_id'      =>   $user_info->user_id

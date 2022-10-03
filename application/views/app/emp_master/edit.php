@@ -97,23 +97,7 @@ require_once(APPPATH . 'views/admin/include/navbar.php');
 														</div>
 													</div>
 												</div>
-												<div class="col-lg-4 col-md-6 p-0">
-													<div class="form-group row mx-auto" style="position: relative;top: 7px;">
-														<label class="col-md-4 label-control">Department</label>
-														<div class="col-md-8">
-															<label id="projectinput8" class="file center-block">
-																<select class="form-control" id="projectinput5" required="required" name="department">
-																	<option value="">--Select Department--</option>
-																	<?php foreach($department as $department) {?>
-																		<option value="<?php echo $department->department_id ?>"  <?php if($department->department_id == $res->department_id){ echo "selected";}?>><?php echo $department->department_name; ?></option>
-																	<?php } ?>
-
-																</select>
-
-															</label>
-														</div>
-													</div>
-												</div>
+												
 											</div>
 										</div>
 

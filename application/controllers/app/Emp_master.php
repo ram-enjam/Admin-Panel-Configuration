@@ -23,16 +23,14 @@ class Emp_master extends General{
 	}
 
 	public function add(){
-		$this->data['department'] = $this->form_model->get_department();
 		$this->data['emp'] = $this->emp_master_model->getEmp();	
-
 		$this->load->view('app/emp_master/add',$this->data);		
 	}
 
 		public function save(){ //echo "<pre />"; print_r($_POST); die;
 		$this->form_validation->set_rules("emp_name[]","Emp Name","trim|xss_clean|required");
 		$this->form_validation->set_rules("emp_phone","Phone Number","required|regex_match[/^[0-9]{10}$/]");
-		$this->form_validation->set_rules("department","Department","required");
+		
 		$this->form_validation->set_error_delimiters("<div class='alert alert-warning alert-dismissable'><i class='fa fa-warning'></i><button type='button' class='close' data-dismiss='alert' aria-hidden='true'>&times;</button>","</div>");
 	    
 		if($this->form_validation->run()){
@@ -50,7 +48,7 @@ class Emp_master extends General{
 	}
 
 	public function edit($emp_id){
-		$this->data['department'] = $this->form_model->get_department();
+		
 		$this->data['res'] = $this->emp_master_model->edit_emp($emp_id);
 		$this->load->view('app/emp_master/edit',$this->data);
 	}

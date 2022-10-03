@@ -91,6 +91,11 @@ $user_data = $this->general_model->get_user_details($user_id);
 					</ul>
 				</li>
 			<?php } ?>
+
+			<?php 
+				if($userdata['user_role'] == 1) { ?>
+				<li><a href="<?php echo base_url() . 'admin/adminpage/add_products';?>"><i class="fas fa-flask"></i><span class="menu-title"> Add Products</span></a></li>
+			<?php } ?>
 		
 			<?php if ($userdata['user_role'] == 1) { ?>
 				<li><a href="<?php echo base_url() . 'CreateUsers'; ?>"><i class="la la-user"></i><span class="menu-title">Users</span></a>

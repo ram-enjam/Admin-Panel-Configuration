@@ -77,3 +77,6 @@ $route['CreateUsers'] = 'app/users/add';
 $route['AddJobtitle'] = 'app/master/jobtitle_add';
 $route['AddGalleryTitle'] = 'app/master/gallery_album';
 $route['access-denied'] = 'admin/adminpage/access_denied';
+
+//Products
+$route['add-products'] = "admin/adminpage/add_products";

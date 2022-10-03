@@ -27,7 +27,7 @@
 <!-- END: Theme JS-->
 
 <!-- BEGIN: Page JS-->
-<script src="<?php echo base_url(); ?>backend/app-assets/js/scripts/pages/dashboard-sales.min.js"></script>
+<!-- <script src="<?php echo base_url(); ?>backend/app-assets/js/scripts/pages/dashboard-sales.min.js"></script> -->
 <script src="<?php echo base_url(); ?>backend/app-assets/js/scripts/pages/page-users.min.js"></script>
 <!-- END: Page JS-->
 <!--   <script src="<?php echo base_url(); ?>backend/app-assets/vendors/js/editors/ckeditor/ckeditor-super-build.js"></script> -->

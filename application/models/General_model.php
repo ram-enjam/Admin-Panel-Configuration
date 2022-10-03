@@ -28,10 +28,10 @@ class General_model extends CI_Model
 	public function getUserLoggedIn($username = null)
 	{
 		
-		$select = "SELECT A.*,B.emp_name,C.role_name,D.department_name,D.department_id FROM users as A 
+		$select = "SELECT A.*,B.emp_name,C.role_name FROM users as A 
 		 LEFT JOIN employee as B ON A.user_empid = B.emp_id 
 		 LEFT JOIN user_roles as C ON A.user_role = C.role_id
-		 LEFT JOIN department as D ON B.department_id = D.department_id WHERE A.username='" . $username . "'";
+		 WHERE A.username='" . $username . "'";
 		$query = $this->db->query($select)->row();
 		// print_r($query);die;
 		return $query;

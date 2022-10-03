@@ -63,7 +63,7 @@ class Adminpage extends General
 	{
 		$this->form_model->post_contact_read_check();
 	}
-	
+
 	public function enquiry_details()
 	{
 		$this->data['from_date'] = $this->input->post('from_date');
@@ -253,5 +253,76 @@ class Adminpage extends General
 		}
 		$history .= "</table>";
 		echo $history;
+	}
+
+	public function add_products()
+	{
+		$this->data['add_ptoduct'] = $this->form_model->get_products();
+		$this->load->view("admin/add_products/add_product", $this->data);
+	}
+
+	public function save_products()
+	{
+		$chemical_name = $this->input->post('chemi_name');
+		$chemical_number  = $this->input->post('chemi_num');
+
+		if (!empty($chemical_name && $chemical_number)) {
+			if (!empty($_POST)) {
+				if ($this->form_model->save_products()) {
+					$this->session->set_flashdata('message', "<div class='alert alert-success alert-dismissable'  id='msg'><i class='fa fa-check'></i><button type='button' class='close' data-dismiss='alert' aria-hidden='true'>&times;</button>Data saved successfully!</div>");
+				} else {
+					$this->session->set_flashdata('message', "<div class='alert alert-warning alert-dismissable'><i class='fa fa-exclamation'></i><button type='button' class='close' data-dismiss='alert' aria-hidden='true'>&times;</button>There was an error in saving the data. Please try again or contact your system administrator.</div>");
+				}
+				redirect(base_url() . 'add-products', $this->data);
+			} else {
+				$this->add_products();
+			}
+		} else {
+			$this->session->set_flashdata('message', "<div class='alert alert-warning alert-dismissable'><i class='fa fa-exclamation'></i><button type='button' class='close' data-dismiss='alert' aria-hidden='true'>&times;</button>Input Fields Should Not Be Empty.</div>");
+			redirect(base_url() . 'add-products', $this->data);
+		}
+	}
+	public function edit_product($id)
+	{
+		$this->data['get_product'] = $this->form_model->edit_get_product($id);
+		$this->load->view('admin/add_products/edit_product', $this->data);
+	}
+	public function save_edit_product()
+	{
+		$chemical_name = $this->input->post('chemi_name');
+		$chemical_number  = $this->input->post('chemi_num');
+
+		if (!empty($chemical_name && $chemical_number)) {
+			if ($this->form_model->save_edit_product()) {
+				$this->session->set_flashdata('message', "<div class='alert alert-success alert-dismissable'  id='msg'><i class='fa fa-check'></i><button type='button' class='close' data-dismiss='alert' aria-hidden='true'>&times;</button>Data updated successfully!</div>");
+			} else {
+				$this->session->set_flashdata('message', "<div class='alert alert-warning alert-dismissable'><i class='fa fa-exclamation'></i><button type='button' class='close' data-dismiss='alert' aria-hidden='true'>&times;</button>There was an error in saving the data. Please try again or contact your system administrator.</div>");
+			}
+			redirect(base_url() . 'add-products', $this->data);
+		} else {
+			$this->session->set_flashdata('message', "<div class='alert alert-warning alert-dismissable'><i class='fa fa-exclamation'></i><button type='button' class='close' data-dismiss='alert' aria-hidden='true'>&times;</button>Input Fields Should Not Be Empty.</div>");
+			redirect(base_url() . 'add-products');
+		}
+	}
+	public function product_active($id)
+	{
+		$this->form_model->product_active($id);
+		redirect(base_url() . 'add-products');
+	}
+	public function product_deactive($id)
+	{
+		$this->form_model->product_deactive($id);
+		redirect(base_url() . 'add-products');
+	}
+
+	public function delete_product($id)
+	{
+		if ($this->form_model->delete_product($id)) {
+
+			$this->session->set_flashdata('message', "<div class='alert alert-success alert-dismissable'  id='msg'><i class='fa fa-check'></i><button type='button' class='close' data-dismiss='alert' aria-hidden='true'>&times;</button>Data deleted successfully!</div>");
+		} else {
+			$this->session->set_flashdata('message', "<div class='alert alert-warning alert-dismissable'><i class='fa fa-exclamation'></i><button type='button' class='close' data-dismiss='alert' aria-hidden='true'>&times;</button>There was an error in saving the data. Please try again or contact your system administrator.</div>");
+		}
+		redirect(base_url() . 'add-products');
 	}
 }
